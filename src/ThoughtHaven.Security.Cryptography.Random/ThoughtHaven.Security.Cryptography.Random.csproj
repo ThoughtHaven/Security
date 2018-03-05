@@ -1,8 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <RootNamespace>ThoughtHaven.Security.Cryptography</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Thought Haven,Brendan Ridenour</Authors>
+    <Company>Thought Haven</Company>
+    <Product>ThoughtHaven Security Cryptography Random</Product>
+    <Copyright>© Thought Haven. All rights reserved.</Copyright>
+    <Description>A simple wrapper class for producing cryptographic random numbers.</Description>
   </PropertyGroup>
 
 </Project>

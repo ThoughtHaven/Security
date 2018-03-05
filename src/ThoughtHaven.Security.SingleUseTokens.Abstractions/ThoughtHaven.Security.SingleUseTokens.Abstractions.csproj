@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <RootNamespace>ThoughtHaven.Security.SingleUseTokens</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Copyright>© Thought Haven. All rights reserved.</Copyright>
+    <Description>Reusable components for creating and validating single use tokens.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ThoughtHaven.Core" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>
