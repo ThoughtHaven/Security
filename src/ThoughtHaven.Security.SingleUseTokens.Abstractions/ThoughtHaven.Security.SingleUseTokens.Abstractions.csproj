@@ -6,6 +6,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
     <Description>Reusable components for creating and validating single use tokens.</Description>
+    <Authors>Thought Haven, Brendan Ridenour</Authors>
+    <Company>Thought Haven</Company>
+    <Product>Thought Haven Security Single Use Tokens Abstractions</Product>
   </PropertyGroup>
 
   <ItemGroup>
