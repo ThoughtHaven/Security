@@ -20,7 +20,7 @@ namespace ThoughtHaven.Security.SingleUseTokens
             public class ValueOverload
             {
                 [Fact]
-                public void NotNullValue_SetsValueProperty()
+                public void NotNullValue_SetsValue()
                 {
                     var value = Guid.NewGuid().ToString();
 
