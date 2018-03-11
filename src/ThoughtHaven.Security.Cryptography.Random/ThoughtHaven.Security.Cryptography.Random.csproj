@@ -9,6 +9,7 @@
     <Product>ThoughtHaven Security Cryptography Random</Product>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
     <Description>A simple wrapper class for producing cryptographic random numbers.</Description>
+    <Version>0.100.0</Version>
   </PropertyGroup>
 
 </Project>

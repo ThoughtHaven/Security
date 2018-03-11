@@ -9,6 +9,7 @@
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Product>Thought Haven Security Single Use Tokens Abstractions</Product>
+    <Version>0.100.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
