@@ -57,5 +57,19 @@ namespace ThoughtHaven.Security.SingleUseTokens
                 }
             }
         }
+
+        public class SingleUseTokenOperator
+        {
+            public class ValueOverload
+            {
+                [Fact]
+                public void WhenCalled_ReturnsToken()
+                {
+                    SingleUseToken token = "value";
+
+                    Assert.Equal("value", token.Value);
+                }
+            }
+        }
     }
 }

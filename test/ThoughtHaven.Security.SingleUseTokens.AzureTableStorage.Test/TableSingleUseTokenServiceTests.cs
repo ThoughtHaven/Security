@@ -164,6 +164,32 @@ namespace ThoughtHaven.Security.SingleUseTokens
             }
         }
 
+        public class CreateEntityKeysMethod
+        {
+            public class TokenOverload
+            {
+                [Fact]
+                public void NullToken_Throws()
+                {
+                    Assert.Throws<ArgumentNullException>("token", () =>
+                    {
+                        FakeTableSingleUseTokenService.CreateKeys(token: null);
+                    });
+                }
+
+                [Fact]
+                public void WhenCalled_ReturnsKeys()
+                {
+                    var token = new SingleUseToken("value");
+
+                    var keys = FakeTableSingleUseTokenService.CreateKeys(token);
+
+                    Assert.Equal(token.Value, keys.PartitionKey);
+                    Assert.Equal("Token", keys.RowKey);
+                }
+            }
+        }
+
         private static CloudStorageAccount Account() =>
             CloudStorageAccount.DevelopmentStorageAccount;
         private static TableSingleUseTokenOptions Options() =>

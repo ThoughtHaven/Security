@@ -53,7 +53,7 @@ namespace ThoughtHaven.Security.SingleUseTokens
             return this.Store.Delete(record);
         }
 
-        private static TableEntityStore BuildEntityStore(CloudStorageAccount account,
+        protected static TableEntityStore BuildEntityStore(CloudStorageAccount account,
             TableSingleUseTokenOptions options)
         {
             Guard.Null(nameof(account), account);
@@ -64,7 +64,7 @@ namespace ThoughtHaven.Security.SingleUseTokens
                 options: options.TableRequest);
         }
 
-        private static TableEntityKeys CreateKeys(SingleUseToken token) =>
-            new TableEntityKeys($"PK{token.Value}", $"RK{token.Value}");
+        protected static TableEntityKeys CreateKeys(SingleUseToken token) =>
+            new TableEntityKeys(Guard.Null(nameof(token), token).Value, "Token");
     }
 }

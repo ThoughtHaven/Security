@@ -6,5 +6,8 @@
         {
             Guard.NullOrWhiteSpace(nameof(value), value);
         }
+
+        public static implicit operator SingleUseToken(string value) =>
+            new SingleUseToken(value);
     }
 }

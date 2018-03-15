@@ -4,7 +4,7 @@
     <TargetFramework>netstandard1.0</TargetFramework>
     <RootNamespace>ThoughtHaven.Security.SingleUseTokens</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.100.0</Version>
+    <Version>0.100.1</Version>
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Product>Thought Haven Security Single Use Tokens Azure Table Storage</Product>

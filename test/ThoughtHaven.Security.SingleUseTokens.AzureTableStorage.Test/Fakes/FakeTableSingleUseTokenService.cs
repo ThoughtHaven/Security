@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using ThoughtHaven.Data;
 using ThoughtHaven.Security.SingleUseTokens.Internal;
 
 namespace ThoughtHaven.Security.SingleUseTokens.Fakes
@@ -18,5 +19,8 @@ namespace ThoughtHaven.Security.SingleUseTokens.Fakes
             base.Retrieve(token);
         new public Task Create(SingleUseTokenRecord record) => base.Create(record);
         new public Task Delete(SingleUseTokenRecord record) => base.Delete(record);
+
+        new public static TableEntityKeys CreateKeys(SingleUseToken token) =>
+            TableSingleUseTokenService.CreateKeys(token);
     }
 }
