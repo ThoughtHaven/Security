@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ThoughtHaven.Security.SingleUseTokens.Abstractions.Tests.Fakes
+namespace ThoughtHaven.Security.SingleUseTokens.Fakes
 {
     public class FakeSystemClock : SystemClock
     {

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using ThoughtHaven.Security.SingleUseTokens.Internal;
 
-namespace ThoughtHaven.Security.SingleUseTokens.Abstractions.Tests.Fakes
+namespace ThoughtHaven.Security.SingleUseTokens.Fakes
 {
     public class FakeSingleUseTokenServiceBase : SingleUseTokenServiceBase
     {
@@ -10,7 +10,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Abstractions.Tests.Fakes
 
         public string Create_InputData_Value;
         public DateTimeOffset Create_InputData_Expiration;
-        protected override Task Create(SingleUseTokenData data)
+        protected override Task Create(SingleUseTokenRecord data)
         {
             this.Create_InputData_Value = data.Value;
             this.Create_InputData_Expiration = data.Expiration;
@@ -20,7 +20,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Abstractions.Tests.Fakes
 
         public string Delete_InputData_Value;
         public DateTimeOffset Delete_InputData_Expiration;
-        protected override Task Delete(SingleUseTokenData data)
+        protected override Task Delete(SingleUseTokenRecord data)
         {
             this.Delete_InputData_Value = data.Value;
             this.Delete_InputData_Expiration = data.Expiration;
@@ -32,7 +32,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Abstractions.Tests.Fakes
         public SingleUseToken Retrieve_InputToken;
         public string Retrieve_Output_Value;
         public DateTimeOffset Retrieve_Output_Expiration = DateTimeOffset.UtcNow;
-        protected override Task<SingleUseTokenData> Retrieve(SingleUseToken token)
+        protected override Task<SingleUseTokenRecord> Retrieve(SingleUseToken token)
         {
             this.Retrieve_InputToken = token;
 
@@ -40,11 +40,11 @@ namespace ThoughtHaven.Security.SingleUseTokens.Abstractions.Tests.Fakes
             {
                 this.Retrieve_Output_Value = token.Value;
 
-                return Task.FromResult(new SingleUseTokenData(token,
+                return Task.FromResult(new SingleUseTokenRecord(token,
                     this.Retrieve_Output_Expiration));
             }
 
-            return Task.FromResult<SingleUseTokenData>(null);
+            return Task.FromResult<SingleUseTokenRecord>(null);
         }
     }
 }

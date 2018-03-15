@@ -16,52 +16,34 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
         {
             Guard.Null(nameof(token), token);
 
-            var data = new SingleUseTokenData(token, expiration);
+            var record = new SingleUseTokenRecord(token, expiration);
 
-            if (IsExpired(data))
+            if (record.IsExpired(this._clock))
             {
                 throw new InvalidOperationException("Unable to create this token because it will have already expired.");
             }
 
-            return this.Create(data);
+            return this.Create(record);
         }
 
         public virtual async Task<bool> Validate(SingleUseToken token)
         {
             Guard.Null(nameof(token), token);
 
-            var data = await this.Retrieve(token).ConfigureAwait(false);
+            var record = await this.Retrieve(token).ConfigureAwait(false);
 
-            if (data != null)
+            if (record != null)
             {
-                await this.Delete(data).ConfigureAwait(false);
+                await this.Delete(record).ConfigureAwait(false);
 
-                if (!IsExpired(data)) { return true; }
+                if (!record.IsExpired(this._clock)) { return true; }
             }
 
             return false;
         }
 
-        protected abstract Task<SingleUseTokenData> Retrieve(SingleUseToken token);
-        protected abstract Task Create(SingleUseTokenData data);
-        protected abstract Task Delete(SingleUseTokenData data);
-
-        private bool IsExpired(SingleUseTokenData token) =>
-            this._clock.UtcNow >= token.Expiration;
-
-        protected class SingleUseTokenData : SingleUseToken
-        {
-            public DateTimeOffset Expiration { get; }
-
-            public SingleUseTokenData(SingleUseToken token, DateTimeOffset expiration)
-                : this(token.Value, expiration)
-            { }
-
-            public SingleUseTokenData(string value, DateTimeOffset expiration)
-                : base(value)
-            {
-                this.Expiration = expiration;
-            }
-        }
+        protected abstract Task<SingleUseTokenRecord> Retrieve(SingleUseToken token);
+        protected abstract Task Create(SingleUseTokenRecord record);
+        protected abstract Task Delete(SingleUseTokenRecord record);
     }
 }

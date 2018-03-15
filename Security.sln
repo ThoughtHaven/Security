@@ -7,13 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C174E83C-0D5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{507DB7F2-6E14-4699-91DF-D222B6536A9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThoughtHaven.Security.Cryptography.Random", "src\ThoughtHaven.Security.Cryptography.Random\ThoughtHaven.Security.Cryptography.Random.csproj", "{69C56CCA-66FA-404D-9F66-4C73B7C68638}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThoughtHaven.Security.Cryptography.Random", "src\ThoughtHaven.Security.Cryptography.Random\ThoughtHaven.Security.Cryptography.Random.csproj", "{69C56CCA-66FA-404D-9F66-4C73B7C68638}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThoughtHaven.Security.Cryptography.Random.Test", "test\ThoughtHaven.Security.Cryptography.Random.Test\ThoughtHaven.Security.Cryptography.Random.Test.csproj", "{FBAF0BDE-C88C-4581-8456-A8C5B1F0D41B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThoughtHaven.Security.Cryptography.Random.Test", "test\ThoughtHaven.Security.Cryptography.Random.Test\ThoughtHaven.Security.Cryptography.Random.Test.csproj", "{FBAF0BDE-C88C-4581-8456-A8C5B1F0D41B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThoughtHaven.Security.SingleUseTokens.Abstractions", "src\ThoughtHaven.Security.SingleUseTokens.Abstractions\ThoughtHaven.Security.SingleUseTokens.Abstractions.csproj", "{F0BE9DDE-3C9D-44A4-BDD1-9BBA14A378FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThoughtHaven.Security.SingleUseTokens.Abstractions", "src\ThoughtHaven.Security.SingleUseTokens.Abstractions\ThoughtHaven.Security.SingleUseTokens.Abstractions.csproj", "{F0BE9DDE-3C9D-44A4-BDD1-9BBA14A378FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThoughtHaven.Security.SingleUseTokens.Abstractions.Tests", "test\ThoughtHaven.Security.SingleUseTokens.Abstractions.Tests\ThoughtHaven.Security.SingleUseTokens.Abstractions.Tests.csproj", "{AC932682-080D-4522-86B0-1A8661B52997}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThoughtHaven.Security.SingleUseTokens.Azure.Storage", "src\ThoughtHaven.Security.SingleUseTokens.Azure.Storage\ThoughtHaven.Security.SingleUseTokens.Azure.Storage.csproj", "{9EE2FB1D-EED0-45A7-A2E2-9848388E77EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThoughtHaven.Security.SingleUseTokens.Abstractions.Test", "test\ThoughtHaven.Security.SingleUseTokens.Abstractions.Test\ThoughtHaven.Security.SingleUseTokens.Abstractions.Test.csproj", "{CF5E4508-9916-4A05-AE5E-3B312D05B5C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThoughtHaven.Security.SingleUseTokens.Azure.Storage.Test", "test\ThoughtHaven.Security.SingleUseTokens.Azure.Storage.Test\ThoughtHaven.Security.SingleUseTokens.Azure.Storage.Test.csproj", "{B73F1ADF-666B-4594-89D6-CC8D1BDCE27E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +37,18 @@ Global
 		{F0BE9DDE-3C9D-44A4-BDD1-9BBA14A378FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0BE9DDE-3C9D-44A4-BDD1-9BBA14A378FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0BE9DDE-3C9D-44A4-BDD1-9BBA14A378FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC932682-080D-4522-86B0-1A8661B52997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC932682-080D-4522-86B0-1A8661B52997}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC932682-080D-4522-86B0-1A8661B52997}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC932682-080D-4522-86B0-1A8661B52997}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EE2FB1D-EED0-45A7-A2E2-9848388E77EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EE2FB1D-EED0-45A7-A2E2-9848388E77EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EE2FB1D-EED0-45A7-A2E2-9848388E77EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EE2FB1D-EED0-45A7-A2E2-9848388E77EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF5E4508-9916-4A05-AE5E-3B312D05B5C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF5E4508-9916-4A05-AE5E-3B312D05B5C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF5E4508-9916-4A05-AE5E-3B312D05B5C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF5E4508-9916-4A05-AE5E-3B312D05B5C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B73F1ADF-666B-4594-89D6-CC8D1BDCE27E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B73F1ADF-666B-4594-89D6-CC8D1BDCE27E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B73F1ADF-666B-4594-89D6-CC8D1BDCE27E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B73F1ADF-666B-4594-89D6-CC8D1BDCE27E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,7 +57,9 @@ Global
 		{69C56CCA-66FA-404D-9F66-4C73B7C68638} = {C174E83C-0D56-43FD-8746-C1607FFE447B}
 		{FBAF0BDE-C88C-4581-8456-A8C5B1F0D41B} = {507DB7F2-6E14-4699-91DF-D222B6536A9F}
 		{F0BE9DDE-3C9D-44A4-BDD1-9BBA14A378FE} = {C174E83C-0D56-43FD-8746-C1607FFE447B}
-		{AC932682-080D-4522-86B0-1A8661B52997} = {507DB7F2-6E14-4699-91DF-D222B6536A9F}
+		{9EE2FB1D-EED0-45A7-A2E2-9848388E77EC} = {C174E83C-0D56-43FD-8746-C1607FFE447B}
+		{CF5E4508-9916-4A05-AE5E-3B312D05B5C8} = {507DB7F2-6E14-4699-91DF-D222B6536A9F}
+		{B73F1ADF-666B-4594-89D6-CC8D1BDCE27E} = {507DB7F2-6E14-4699-91DF-D222B6536A9F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7B9E69C5-754A-479E-8293-F5F3A6F66268}

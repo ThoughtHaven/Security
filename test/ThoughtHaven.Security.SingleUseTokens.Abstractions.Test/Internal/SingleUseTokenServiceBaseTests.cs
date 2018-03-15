@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 using System.Threading.Tasks;
-using ThoughtHaven.Security.SingleUseTokens.Abstractions.Tests.Fakes;
+using ThoughtHaven.Security.SingleUseTokens.Fakes;
 
 namespace ThoughtHaven.Security.SingleUseTokens.Internal
 {
