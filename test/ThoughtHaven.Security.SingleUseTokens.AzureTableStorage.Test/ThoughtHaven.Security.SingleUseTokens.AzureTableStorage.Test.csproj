@@ -4,8 +4,6 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
-
-    <RootNamespace>ThoughtHaven.Security.SingleUseTokens</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ThoughtHaven.Security.SingleUseTokens.Azure.Storage\ThoughtHaven.Security.SingleUseTokens.Azure.Storage.csproj" />
+    <ProjectReference Include="..\..\src\ThoughtHaven.Security.SingleUseTokens.AzureTableStorage\ThoughtHaven.Security.SingleUseTokens.AzureTableStorage.csproj" />
   </ItemGroup>
 
 </Project>
