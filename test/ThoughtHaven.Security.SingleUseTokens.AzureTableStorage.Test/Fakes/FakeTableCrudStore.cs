@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ThoughtHaven.Data;
-using ThoughtHaven.Security.SingleUseTokens.Internal;
+using ThoughtHaven.Security.SingleUseTokens.AzureTableStorage;
 
 namespace ThoughtHaven.Security.SingleUseTokens.Fakes
 {

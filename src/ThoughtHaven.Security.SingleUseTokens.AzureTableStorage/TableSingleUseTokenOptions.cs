@@ -1,9 +1,20 @@
 ﻿using Microsoft.WindowsAzure.Storage.Table;
 
-namespace ThoughtHaven.Security.SingleUseTokens
+namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
 {
     public class TableSingleUseTokenOptions
     {
+        private string _storageAccountConnectionString;
+        public string StorageAccountConnectionString
+        {
+            get => this._storageAccountConnectionString;
+            set
+            {
+                this._storageAccountConnectionString = Guard.NullOrWhiteSpace(nameof(value),
+                    value);
+            }
+        }
+
         private string _tableName = "SingleUseTokens";
         public string TableName
         {
@@ -16,6 +27,12 @@ namespace ThoughtHaven.Security.SingleUseTokens
         {
             get { return this._tableRequest; }
             set { this._tableRequest = Guard.Null(nameof(value), value); }
+        }
+
+        public TableSingleUseTokenOptions(string storageAccountConnectionString)
+        {
+            this._storageAccountConnectionString = Guard.NullOrWhiteSpace(
+                nameof(storageAccountConnectionString), storageAccountConnectionString);
         }
     }
 }

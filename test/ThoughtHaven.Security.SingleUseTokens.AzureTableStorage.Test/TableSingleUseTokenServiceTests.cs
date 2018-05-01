@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage;
 using ThoughtHaven.Security.SingleUseTokens.Fakes;
 using ThoughtHaven.Security.SingleUseTokens.Internal;
 using Xunit;
 
-namespace ThoughtHaven.Security.SingleUseTokens
+namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
 {
     public class TableSingleUseTokenServiceTests
     {
@@ -24,24 +23,11 @@ namespace ThoughtHaven.Security.SingleUseTokens
             public class AccountAndOptionsAndClockOverload
             {
                 [Fact]
-                public void NullAccount_Throws()
-                {
-                    Assert.Throws<ArgumentNullException>("account", () =>
-                    {
-                        new TableSingleUseTokenService(
-                            account: null,
-                            options: Options(),
-                            clock: Clock());
-                    });
-                }
-
-                [Fact]
                 public void NullOptions_Throws()
                 {
                     Assert.Throws<ArgumentNullException>("options", () =>
                     {
                         new TableSingleUseTokenService(
-                            account: Account(),
                             options: null,
                             clock: Clock());
                     });
@@ -53,7 +39,6 @@ namespace ThoughtHaven.Security.SingleUseTokens
                     Assert.Throws<ArgumentNullException>("clock", () =>
                     {
                         new TableSingleUseTokenService(
-                            account: Account(),
                             options: Options(),
                             clock: null);
                     });
@@ -189,11 +174,9 @@ namespace ThoughtHaven.Security.SingleUseTokens
                 }
             }
         }
-
-        private static CloudStorageAccount Account() =>
-            CloudStorageAccount.DevelopmentStorageAccount;
+        
         private static TableSingleUseTokenOptions Options() =>
-            new TableSingleUseTokenOptions();
+            new TableSingleUseTokenOptions("UseDevelopmentStorage=true;");
         private static FakeTableCrudStore Store() => new FakeTableCrudStore();
         private static FakeSystemClock Clock() => new FakeSystemClock(DateTimeOffset.UtcNow);
         private static FakeTableSingleUseTokenService Service(

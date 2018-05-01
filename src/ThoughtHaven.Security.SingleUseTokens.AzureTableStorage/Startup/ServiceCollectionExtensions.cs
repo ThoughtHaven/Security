@@ -1,21 +1,19 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.WindowsAzure.Storage;
 using ThoughtHaven;
 using ThoughtHaven.Security.SingleUseTokens;
+using ThoughtHaven.Security.SingleUseTokens.AzureTableStorage;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddSingleUseTokens(this IServiceCollection services,
-            string storageAccountConnectionString, TableSingleUseTokenOptions options = null)
+            TableSingleUseTokenOptions options)
         {
             Guard.Null(nameof(services), services);
-            Guard.NullOrWhiteSpace(nameof(storageAccountConnectionString),
-                storageAccountConnectionString);
+            Guard.Null(nameof(options), options);
 
-            services.TryAddSingleton(CloudStorageAccount.Parse(storageAccountConnectionString));
-            services.TryAddSingleton(options ?? new TableSingleUseTokenOptions());
+            services.TryAddSingleton(options);
             services.TryAddSingleton<SystemClock>();
             services.TryAddTransient<ISingleUseTokenService, TableSingleUseTokenService>();
 

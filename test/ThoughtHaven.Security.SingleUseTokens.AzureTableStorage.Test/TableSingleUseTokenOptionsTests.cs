@@ -2,7 +2,7 @@
 using Microsoft.WindowsAzure.Storage.Table;
 using Xunit;
 
-namespace ThoughtHaven.Security.SingleUseTokens
+namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
 {
     public class TableSingleUseTokenOptionsTests
     {
@@ -13,7 +13,7 @@ namespace ThoughtHaven.Security.SingleUseTokens
                 [Fact]
                 public void DefaultValue_ReturnsSingleUseTokens()
                 {
-                    var options = new TableSingleUseTokenOptions();
+                    var options = Options();
 
                     Assert.Equal("SingleUseTokens", options.TableName);
                 }
@@ -26,7 +26,7 @@ namespace ThoughtHaven.Security.SingleUseTokens
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new TableSingleUseTokenOptions().TableName = null;
+                        Options().TableName = null;
                     });
                 }
 
@@ -35,7 +35,7 @@ namespace ThoughtHaven.Security.SingleUseTokens
                 {
                     Assert.Throws<ArgumentException>("value", () =>
                     {
-                        new TableSingleUseTokenOptions().TableName = "";
+                        Options().TableName = "";
                     });
                 }
 
@@ -44,14 +44,15 @@ namespace ThoughtHaven.Security.SingleUseTokens
                 {
                     Assert.Throws<ArgumentException>("value", () =>
                     {
-                        new TableSingleUseTokenOptions().TableName = " ";
+                        Options().TableName = " ";
                     });
                 }
 
                 [Fact]
                 public void WhenCalled_SetsValue()
                 {
-                    var options = new TableSingleUseTokenOptions { TableName = "Table" };
+                    var options = Options();
+                    options.TableName = "Table";
 
                     Assert.Equal("Table", options.TableName);
                 }
@@ -65,7 +66,7 @@ namespace ThoughtHaven.Security.SingleUseTokens
                 [Fact]
                 public void DefaultValue_ReturnsNotNull()
                 {
-                    var options = new TableSingleUseTokenOptions();
+                    var options = Options();
 
                     Assert.NotNull(options.TableRequest);
                 }
@@ -78,7 +79,7 @@ namespace ThoughtHaven.Security.SingleUseTokens
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new TableSingleUseTokenOptions().TableRequest = null;
+                        Options().TableRequest = null;
                     });
                 }
 
@@ -86,12 +87,18 @@ namespace ThoughtHaven.Security.SingleUseTokens
                 public void WhenCalled_SetsValue()
                 {
                     var request = new TableRequestOptions();
+                    var options = Options();
 
-                    var options = new TableSingleUseTokenOptions { TableRequest = request };
+                    options.TableRequest = request;
 
                     Assert.Equal(request, options.TableRequest);
                 }
             }
         }
+
+        private static TableSingleUseTokenOptions Options(
+            string storageAccountConnectionString = null) =>
+            new TableSingleUseTokenOptions(
+                storageAccountConnectionString ?? "connectionString");
     }
 }

@@ -4,15 +4,14 @@ using ThoughtHaven.Azure.Storage.Table;
 using ThoughtHaven.Data;
 using ThoughtHaven.Security.SingleUseTokens.Internal;
 
-namespace ThoughtHaven.Security.SingleUseTokens
+namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
 {
     public class TableSingleUseTokenService : SingleUseTokenServiceBase
     {
         protected TableCrudStore<SingleUseToken, SingleUseTokenModel> Store { get; }
 
-        public TableSingleUseTokenService(CloudStorageAccount account,
-            TableSingleUseTokenOptions options, SystemClock clock)
-            : this(BuildEntityStore(account, options), clock)
+        public TableSingleUseTokenService(TableSingleUseTokenOptions options, SystemClock clock)
+            : this(BuildEntityStore(options), clock)
         { }
 
         protected TableSingleUseTokenService(TableEntityStore entityStore, SystemClock clock)
@@ -53,14 +52,13 @@ namespace ThoughtHaven.Security.SingleUseTokens
             return this.Store.Delete(record);
         }
 
-        protected static TableEntityStore BuildEntityStore(CloudStorageAccount account,
-            TableSingleUseTokenOptions options)
+        protected static TableEntityStore BuildEntityStore(TableSingleUseTokenOptions options)
         {
-            Guard.Null(nameof(account), account);
             Guard.Null(nameof(options), options);
 
             return new TableEntityStore(
-                table: account.CreateCloudTableClient().GetTableReference(options.TableName),
+                table: CloudStorageAccount.Parse(options.StorageAccountConnectionString)
+                    .CreateCloudTableClient().GetTableReference(options.TableName),
                 options: options.TableRequest);
         }
 

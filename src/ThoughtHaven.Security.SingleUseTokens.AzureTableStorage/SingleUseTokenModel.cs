@@ -1,6 +1,7 @@
 ﻿using System;
+using ThoughtHaven.Security.SingleUseTokens.Internal;
 
-namespace ThoughtHaven.Security.SingleUseTokens.Internal
+namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
 {
     public class SingleUseTokenModel
     {
