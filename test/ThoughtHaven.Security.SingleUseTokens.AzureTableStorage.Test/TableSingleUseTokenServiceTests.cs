@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Threading.Tasks;
 using ThoughtHaven.Security.SingleUseTokens.Fakes;
 using ThoughtHaven.Security.SingleUseTokens.Internal;

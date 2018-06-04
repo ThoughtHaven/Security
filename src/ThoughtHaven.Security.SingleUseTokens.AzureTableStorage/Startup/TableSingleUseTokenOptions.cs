@@ -1,6 +1,7 @@
 ﻿using Microsoft.WindowsAzure.Storage.Table;
+using ThoughtHaven;
 
-namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
+namespace Microsoft.Extensions.DependencyInjection
 {
     public class TableSingleUseTokenOptions
     {

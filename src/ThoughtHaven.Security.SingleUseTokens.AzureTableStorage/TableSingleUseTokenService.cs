@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.WindowsAzure.Storage;
 using ThoughtHaven.Azure.Storage.Table;
 using ThoughtHaven.Data;
