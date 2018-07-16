@@ -9,11 +9,11 @@
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Product>Thought Haven Security Single Use Tokens Abstractions</Product>
-    <Version>0.101.0</Version>
+    <Version>0.102.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ThoughtHaven.Core" Version="0.101.0" />
+    <PackageReference Include="ThoughtHaven.Core" Version="0.103.0" />
   </ItemGroup>
 
 </Project>
