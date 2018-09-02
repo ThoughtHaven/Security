@@ -10,9 +10,9 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
     {
         protected TableCrudStore<SingleUseToken, SingleUseTokenModel> Store { get; }
 
-        public TableSingleUseTokenService(TableSingleUseTokenConfiguration configuration,
+        public TableSingleUseTokenService(TableSingleUseTokenOptions options,
             SystemClock clock)
-            : this(BuildEntityStore(configuration), clock)
+            : this(BuildEntityStore(options), clock)
         { }
 
         protected TableSingleUseTokenService(TableEntityStore entityStore, SystemClock clock)
@@ -54,7 +54,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
         }
 
         protected static TableEntityStore BuildEntityStore(
-            TableSingleUseTokenConfiguration configuration)
+            TableSingleUseTokenOptions configuration)
         {
             Guard.Null(nameof(configuration), configuration);
 

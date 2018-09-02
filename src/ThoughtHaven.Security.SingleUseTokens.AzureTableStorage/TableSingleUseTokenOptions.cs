@@ -2,7 +2,7 @@
 
 namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
 {
-    public class TableSingleUseTokenConfiguration
+    public class TableSingleUseTokenOptions
     {
         public string StorageAccountConnectionString { get; }
 
@@ -20,7 +20,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
             set { this._tableRequest = Guard.Null(nameof(value), value); }
         }
 
-        public TableSingleUseTokenConfiguration(string storageAccountConnectionString)
+        public TableSingleUseTokenOptions(string storageAccountConnectionString)
         {
             this.StorageAccountConnectionString = Guard.NullOrWhiteSpace(
                 nameof(storageAccountConnectionString), storageAccountConnectionString);

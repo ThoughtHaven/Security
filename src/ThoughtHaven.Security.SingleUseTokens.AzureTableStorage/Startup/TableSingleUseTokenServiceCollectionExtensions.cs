@@ -8,12 +8,12 @@ namespace Microsoft.Extensions.DependencyInjection
     public static class TableSingleUseTokenServiceCollectionExtensions
     {
         public static IServiceCollection AddSingleUseTokens(this IServiceCollection services,
-            TableSingleUseTokenConfiguration configuration)
+            TableSingleUseTokenOptions options)
         {
             Guard.Null(nameof(services), services);
-            Guard.Null(nameof(configuration), configuration);
+            Guard.Null(nameof(options), options);
 
-            services.TryAddSingleton(configuration);
+            services.TryAddSingleton(options);
             services.TryAddSingleton<SystemClock>();
             services.TryAddTransient<ISingleUseTokenService, TableSingleUseTokenService>();
 

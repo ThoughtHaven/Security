@@ -28,7 +28,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                     Assert.Throws<ArgumentNullException>("configuration", () =>
                     {
                         new TableSingleUseTokenService(
-                            configuration: null,
+                            options: null,
                             clock: Clock());
                     });
                 }
@@ -39,7 +39,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                     Assert.Throws<ArgumentNullException>("clock", () =>
                     {
                         new TableSingleUseTokenService(
-                            configuration: Options(),
+                            options: Options(),
                             clock: null);
                     });
                 }
@@ -175,8 +175,8 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
             }
         }
         
-        private static TableSingleUseTokenConfiguration Options() =>
-            new TableSingleUseTokenConfiguration("UseDevelopmentStorage=true;");
+        private static TableSingleUseTokenOptions Options() =>
+            new TableSingleUseTokenOptions("UseDevelopmentStorage=true;");
         private static FakeTableCrudStore Store() => new FakeTableCrudStore();
         private static FakeSystemClock Clock() => new FakeSystemClock(DateTimeOffset.UtcNow);
         private static FakeTableSingleUseTokenService Service(

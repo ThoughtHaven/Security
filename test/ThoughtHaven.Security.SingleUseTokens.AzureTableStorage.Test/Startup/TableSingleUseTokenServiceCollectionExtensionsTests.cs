@@ -20,29 +20,29 @@ namespace Microsoft.Extensions.DependencyInjection
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
                         services.AddSingleUseTokens(
-                            configuration: Configuration());
+                            options: Options());
                     });
                 }
 
                 [Fact]
                 public void NullOptions_Throws()
                 {
-                    Assert.Throws<ArgumentNullException>("configuration", () =>
+                    Assert.Throws<ArgumentNullException>("options", () =>
                     {
-                        Services().AddSingleUseTokens(configuration: null);
+                        Services().AddSingleUseTokens(options: null);
                     });
                 }
 
                 [Fact]
-                public void WhenCalled_AddsConfiguration()
+                public void WhenCalled_AddsOptions()
                 {
                     var services = Services();
-                    var options = Configuration();
+                    var options = Options();
 
                     services.AddSingleUseTokens(options);
 
                     var service = services.BuildServiceProvider()
-                        .GetRequiredService<TableSingleUseTokenConfiguration>();
+                        .GetRequiredService<TableSingleUseTokenOptions>();
 
                     Assert.Equal(options, service);
                 }
@@ -52,7 +52,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     var services = Services();
 
-                    services.AddSingleUseTokens(Configuration());
+                    services.AddSingleUseTokens(Options());
 
                     var service = services.BuildServiceProvider()
                         .GetRequiredService<SystemClock>();
@@ -65,7 +65,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     var services = Services();
 
-                    services.AddSingleUseTokens(Configuration());
+                    services.AddSingleUseTokens(Options());
 
                     var service = services.BuildServiceProvider()
                         .GetRequiredService<ISingleUseTokenService>();
@@ -78,7 +78,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     var services = Services();
 
-                    var result = services.AddSingleUseTokens(Configuration());
+                    var result = services.AddSingleUseTokens(Options());
 
                     Assert.Equal(services, result);
                 }
@@ -86,7 +86,7 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         private static IServiceCollection Services() => new ServiceCollection();
-        private static TableSingleUseTokenConfiguration Configuration() =>
-            new TableSingleUseTokenConfiguration("UseDevelopmentStorage=true;");
+        private static TableSingleUseTokenOptions Options() =>
+            new TableSingleUseTokenOptions("UseDevelopmentStorage=true;");
     }
 }

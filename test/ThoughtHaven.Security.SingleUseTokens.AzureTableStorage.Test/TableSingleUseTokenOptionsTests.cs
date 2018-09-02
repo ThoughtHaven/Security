@@ -4,7 +4,7 @@ using Xunit;
 
 namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
 {
-    public class TableSingleUseTokenConfigurationTests
+    public class TableSingleUseTokenOptionsTests
     {
         public class TableNameProperty
         {
@@ -13,7 +13,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 [Fact]
                 public void DefaultValue_ReturnsSingleUseTokens()
                 {
-                    var options = Configuration();
+                    var options = Options();
 
                     Assert.Equal("SingleUseTokens", options.TableName);
                 }
@@ -26,7 +26,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        Configuration().TableName = null;
+                        Options().TableName = null;
                     });
                 }
 
@@ -35,7 +35,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 {
                     Assert.Throws<ArgumentException>("value", () =>
                     {
-                        Configuration().TableName = "";
+                        Options().TableName = "";
                     });
                 }
 
@@ -44,14 +44,14 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 {
                     Assert.Throws<ArgumentException>("value", () =>
                     {
-                        Configuration().TableName = " ";
+                        Options().TableName = " ";
                     });
                 }
 
                 [Fact]
                 public void WhenCalled_SetsValue()
                 {
-                    var options = Configuration();
+                    var options = Options();
                     options.TableName = "Table";
 
                     Assert.Equal("Table", options.TableName);
@@ -66,7 +66,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 [Fact]
                 public void DefaultValue_ReturnsNotNull()
                 {
-                    var options = Configuration();
+                    var options = Options();
 
                     Assert.NotNull(options.TableRequest);
                 }
@@ -79,7 +79,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        Configuration().TableRequest = null;
+                        Options().TableRequest = null;
                     });
                 }
 
@@ -87,7 +87,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 public void WhenCalled_SetsValue()
                 {
                     var request = new TableRequestOptions();
-                    var options = Configuration();
+                    var options = Options();
 
                     options.TableRequest = request;
 
@@ -105,7 +105,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("storageAccountConnectionString", () =>
                     {
-                        new TableSingleUseTokenConfiguration(
+                        new TableSingleUseTokenOptions(
                             storageAccountConnectionString: null);
                     });
                 }
@@ -115,7 +115,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 {
                     Assert.Throws<ArgumentException>("storageAccountConnectionString", () =>
                     {
-                        new TableSingleUseTokenConfiguration(
+                        new TableSingleUseTokenOptions(
                             storageAccountConnectionString: "");
                     });
                 }
@@ -125,7 +125,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 {
                     Assert.Throws<ArgumentException>("storageAccountConnectionString", () =>
                     {
-                        new TableSingleUseTokenConfiguration(
+                        new TableSingleUseTokenOptions(
                             storageAccountConnectionString: " ");
                     });
                 }
@@ -133,7 +133,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 [Fact]
                 public void WhenCalled_SetsStorageAccountConnectionString()
                 {
-                    var config = new TableSingleUseTokenConfiguration(
+                    var config = new TableSingleUseTokenOptions(
                         "UseDevelopmentStorage=true;");
 
                     Assert.Equal("UseDevelopmentStorage=true;",
@@ -142,9 +142,9 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
             }
         }
 
-        private static TableSingleUseTokenConfiguration Configuration(
+        private static TableSingleUseTokenOptions Options(
             string storageAccountConnectionString = null) =>
-            new TableSingleUseTokenConfiguration(
+            new TableSingleUseTokenOptions(
                 storageAccountConnectionString ?? "connectionString");
     }
 }
