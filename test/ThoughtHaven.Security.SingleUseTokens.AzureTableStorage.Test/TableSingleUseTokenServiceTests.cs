@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using ThoughtHaven.Security.SingleUseTokens.Fakes;
 using ThoughtHaven.Security.SingleUseTokens.Internal;
@@ -21,15 +20,15 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
 
         public class Constructor
         {
-            public class AccountAndOptionsAndClockOverload
+            public class ConfigurationAndClockOverload
             {
                 [Fact]
-                public void NullOptions_Throws()
+                public void NullConfiguration_Throws()
                 {
-                    Assert.Throws<ArgumentNullException>("options", () =>
+                    Assert.Throws<ArgumentNullException>("configuration", () =>
                     {
                         new TableSingleUseTokenService(
-                            options: null,
+                            configuration: null,
                             clock: Clock());
                     });
                 }
@@ -40,7 +39,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                     Assert.Throws<ArgumentNullException>("clock", () =>
                     {
                         new TableSingleUseTokenService(
-                            options: Options(),
+                            configuration: Options(),
                             clock: null);
                     });
                 }
@@ -176,8 +175,8 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
             }
         }
         
-        private static TableSingleUseTokenOptions Options() =>
-            new TableSingleUseTokenOptions("UseDevelopmentStorage=true;");
+        private static TableSingleUseTokenConfiguration Options() =>
+            new TableSingleUseTokenConfiguration("UseDevelopmentStorage=true;");
         private static FakeTableCrudStore Store() => new FakeTableCrudStore();
         private static FakeSystemClock Clock() => new FakeSystemClock(DateTimeOffset.UtcNow);
         private static FakeTableSingleUseTokenService Service(

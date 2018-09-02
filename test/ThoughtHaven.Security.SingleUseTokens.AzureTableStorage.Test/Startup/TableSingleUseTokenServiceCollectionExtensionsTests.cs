@@ -1,15 +1,16 @@
 ﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+using ThoughtHaven;
+using ThoughtHaven.Security.SingleUseTokens;
 using ThoughtHaven.Security.SingleUseTokens.AzureTableStorage;
 using Xunit;
 
-namespace ThoughtHaven.Security.SingleUseTokens.Startup
+namespace Microsoft.Extensions.DependencyInjection
 {
-    public class ServiceCollectionExtensionsTests
+    public class TableSingleUseTokenServiceCollectionExtensionsTests
     {
         public class AddSingleUseTokensMethod
         {
-            public class ServicesAndStorageAccountConnectionStringAndOptionsOverload
+            public class ServicesAndConfigurationOverload
             {
                 [Fact]
                 public void NullServices_Throws()
@@ -19,29 +20,29 @@ namespace ThoughtHaven.Security.SingleUseTokens.Startup
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
                         services.AddSingleUseTokens(
-                            options: Options());
+                            configuration: Configuration());
                     });
                 }
 
                 [Fact]
                 public void NullOptions_Throws()
                 {
-                    Assert.Throws<ArgumentNullException>("options", () =>
+                    Assert.Throws<ArgumentNullException>("configuration", () =>
                     {
-                        Services().AddSingleUseTokens(options: null);
+                        Services().AddSingleUseTokens(configuration: null);
                     });
                 }
 
                 [Fact]
-                public void WhenCalled_AddsOptions()
+                public void WhenCalled_AddsConfiguration()
                 {
                     var services = Services();
-                    var options = Options();
+                    var options = Configuration();
 
                     services.AddSingleUseTokens(options);
 
                     var service = services.BuildServiceProvider()
-                        .GetRequiredService<TableSingleUseTokenOptions>();
+                        .GetRequiredService<TableSingleUseTokenConfiguration>();
 
                     Assert.Equal(options, service);
                 }
@@ -51,7 +52,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Startup
                 {
                     var services = Services();
 
-                    services.AddSingleUseTokens(Options());
+                    services.AddSingleUseTokens(Configuration());
 
                     var service = services.BuildServiceProvider()
                         .GetRequiredService<SystemClock>();
@@ -64,18 +65,28 @@ namespace ThoughtHaven.Security.SingleUseTokens.Startup
                 {
                     var services = Services();
 
-                    services.AddSingleUseTokens(Options());
+                    services.AddSingleUseTokens(Configuration());
 
                     var service = services.BuildServiceProvider()
                         .GetRequiredService<ISingleUseTokenService>();
 
                     Assert.IsType<TableSingleUseTokenService>(service);
                 }
+
+                [Fact]
+                public void WhenCalled_ReturnsServices()
+                {
+                    var services = Services();
+
+                    var result = services.AddSingleUseTokens(Configuration());
+
+                    Assert.Equal(services, result);
+                }
             }
         }
 
         private static IServiceCollection Services() => new ServiceCollection();
-        private static TableSingleUseTokenOptions Options() =>
-            new TableSingleUseTokenOptions("UseDevelopmentStorage=true;");
+        private static TableSingleUseTokenConfiguration Configuration() =>
+            new TableSingleUseTokenConfiguration("UseDevelopmentStorage=true;");
     }
 }

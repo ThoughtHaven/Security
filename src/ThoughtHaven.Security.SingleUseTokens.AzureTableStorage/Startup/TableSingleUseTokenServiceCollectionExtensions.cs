@@ -5,15 +5,15 @@ using ThoughtHaven.Security.SingleUseTokens.AzureTableStorage;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class ServiceCollectionExtensions
+    public static class TableSingleUseTokenServiceCollectionExtensions
     {
         public static IServiceCollection AddSingleUseTokens(this IServiceCollection services,
-            TableSingleUseTokenOptions options)
+            TableSingleUseTokenConfiguration configuration)
         {
             Guard.Null(nameof(services), services);
-            Guard.Null(nameof(options), options);
+            Guard.Null(nameof(configuration), configuration);
 
-            services.TryAddSingleton(options);
+            services.TryAddSingleton(configuration);
             services.TryAddSingleton<SystemClock>();
             services.TryAddTransient<ISingleUseTokenService, TableSingleUseTokenService>();
 

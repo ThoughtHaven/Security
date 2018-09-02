@@ -1,6 +1,5 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.WindowsAzure.Storage;
+﻿using Microsoft.WindowsAzure.Storage;
+using System.Threading.Tasks;
 using ThoughtHaven.Azure.Storage.Table;
 using ThoughtHaven.Data;
 using ThoughtHaven.Security.SingleUseTokens.Internal;
@@ -11,8 +10,9 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
     {
         protected TableCrudStore<SingleUseToken, SingleUseTokenModel> Store { get; }
 
-        public TableSingleUseTokenService(TableSingleUseTokenOptions options, SystemClock clock)
-            : this(BuildEntityStore(options), clock)
+        public TableSingleUseTokenService(TableSingleUseTokenConfiguration configuration,
+            SystemClock clock)
+            : this(BuildEntityStore(configuration), clock)
         { }
 
         protected TableSingleUseTokenService(TableEntityStore entityStore, SystemClock clock)
@@ -53,14 +53,16 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
             return this.Store.Delete(record);
         }
 
-        protected static TableEntityStore BuildEntityStore(TableSingleUseTokenOptions options)
+        protected static TableEntityStore BuildEntityStore(
+            TableSingleUseTokenConfiguration configuration)
         {
-            Guard.Null(nameof(options), options);
+            Guard.Null(nameof(configuration), configuration);
 
             return new TableEntityStore(
-                table: CloudStorageAccount.Parse(options.StorageAccountConnectionString)
-                    .CreateCloudTableClient().GetTableReference(options.TableName),
-                options: options.TableRequest);
+                table: CloudStorageAccount.Parse(
+                    configuration.StorageAccountConnectionString).CreateCloudTableClient()
+                    .GetTableReference(configuration.TableName),
+                options: configuration.TableRequest);
         }
 
         protected static TableEntityKeys CreateKeys(SingleUseToken token) =>
