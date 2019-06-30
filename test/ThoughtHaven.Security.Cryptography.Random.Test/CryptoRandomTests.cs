@@ -110,7 +110,7 @@ namespace ThoughtHaven.Security.Cryptography
 
                     Assert.Throws<ArgumentNullException>("characterSet", () =>
                     {
-                        random.GenerateString(length: 5, characterSet: null);
+                        random.GenerateString(length: 5, characterSet: null!);
                     });
                 }
 

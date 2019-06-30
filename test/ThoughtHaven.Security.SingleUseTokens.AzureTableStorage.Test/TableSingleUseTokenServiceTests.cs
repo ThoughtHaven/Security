@@ -28,7 +28,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                     Assert.Throws<ArgumentNullException>("configuration", () =>
                     {
                         new TableSingleUseTokenService(
-                            options: null,
+                            options: null!,
                             clock: Clock());
                     });
                 }
@@ -40,7 +40,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                     {
                         new TableSingleUseTokenService(
                             options: Options(),
-                            clock: null);
+                            clock: null!);
                     });
                 }
             }
@@ -55,7 +55,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("token", async () =>
                     {
-                        await Service().Retrieve(token: null);
+                        await Service().Retrieve(token: null!);
                     });
                 }
 
@@ -90,8 +90,9 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
 
                     var result = await service.Retrieve(token);
 
-                    Assert.Equal(service.Store.Retrieve_Output.Value, result.Value);
-                    Assert.Equal(service.Store.Retrieve_Output.Expiration, result.Expiration);
+                    Assert.Equal(service.Store.Retrieve_Output!.Value, result!.Value);
+                    Assert.Equal(service.Store.Retrieve_Output.Expiration,
+                        result.Expiration);
                 }
             }
         }
@@ -105,7 +106,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("record", async () =>
                     {
-                        await Service().Create(record: null);
+                        await Service().Create(record: null!);
                     });
                 }
 
@@ -117,7 +118,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
 
                     await service.Create(record);
 
-                    Assert.Equal(record.Value, service.Store.Create_InputModel.Value);
+                    Assert.Equal(record.Value, service.Store.Create_InputModel!.Value);
                     Assert.Equal(record.Expiration, service.Store.Create_InputModel.Expiration);
                 }
             }
@@ -132,7 +133,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 {
                     await Assert.ThrowsAsync<ArgumentNullException>("record", async () =>
                     {
-                        await Service().Delete(record: null);
+                        await Service().Delete(record: null!);
                     });
                 }
 
@@ -158,7 +159,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("token", () =>
                     {
-                        FakeTableSingleUseTokenService.CreateKeys(token: null);
+                        FakeTableSingleUseTokenService.CreateKeys(token: null!);
                     });
                 }
 
@@ -180,7 +181,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
         private static FakeTableCrudStore Store() => new FakeTableCrudStore();
         private static FakeSystemClock Clock() => new FakeSystemClock(DateTimeOffset.UtcNow);
         private static FakeTableSingleUseTokenService Service(
-            FakeTableCrudStore store = null, FakeSystemClock clock = null) =>
+            FakeTableCrudStore? store = null, FakeSystemClock? clock = null) =>
             new FakeTableSingleUseTokenService(store ?? Store(), clock ?? Clock());
         private static SingleUseToken Token() => new SingleUseToken("value");
         private static SingleUseTokenRecord Record() =>

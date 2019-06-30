@@ -5,12 +5,13 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
 {
     public class SingleUseTokenModel
     {
-        public string Value { get; set; }
+        public string? Value { get; set; }
         public DateTimeOffset Expiration { get; set; }
 
         public SingleUseTokenModel() { }
 
-        public SingleUseTokenModel(SingleUseTokenRecord record) : this()
+        public SingleUseTokenModel(SingleUseTokenRecord record)
+            : this()
         {
             Guard.Null(nameof(record), record);
 
@@ -19,6 +20,6 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
         }
 
         public SingleUseTokenRecord ToRecord() =>
-            new SingleUseTokenRecord(this.Value, this.Expiration);
+            new SingleUseTokenRecord(this.Value!, this.Expiration);
     }
 }

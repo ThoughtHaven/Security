@@ -30,7 +30,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
             this.Store = Guard.Null(nameof(store), store);
         }
 
-        protected override async Task<SingleUseTokenRecord> Retrieve(SingleUseToken token)
+        protected override async Task<SingleUseTokenRecord?> Retrieve(SingleUseToken token)
         {
             Guard.Null(nameof(token), token);
 

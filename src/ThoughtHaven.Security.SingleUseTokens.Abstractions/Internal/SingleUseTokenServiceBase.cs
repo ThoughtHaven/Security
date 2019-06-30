@@ -42,7 +42,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
             return false;
         }
 
-        protected abstract Task<SingleUseTokenRecord> Retrieve(SingleUseToken token);
+        protected abstract Task<SingleUseTokenRecord?> Retrieve(SingleUseToken token);
         protected abstract Task Create(SingleUseTokenRecord record);
         protected abstract Task Delete(SingleUseTokenRecord record);
     }

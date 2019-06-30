@@ -26,7 +26,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
                 {
                     Assert.Throws<ArgumentNullException>("clock", () =>
                     {
-                        new FakeSingleUseTokenServiceBase(clock: null);
+                        new FakeSingleUseTokenServiceBase(clock: null!);
                     });
                 }
             }
@@ -45,7 +45,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
                     await Assert.ThrowsAsync<ArgumentNullException>(async () =>
                     {
                         await service.Create(
-                            token: null,
+                            token: null!,
                             expiration: clock.UtcNow.AddHours(1));
                     });
                 }
@@ -91,7 +91,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
 
                     await Assert.ThrowsAsync<ArgumentNullException>("token", async () =>
                     {
-                        await service.Validate(token: null);
+                        await service.Validate(token: null!);
                     });
                 }
 
@@ -114,8 +114,10 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
                     var token = new SingleUseToken("token");
                     var clock = Clock();
                     var expiration = clock.UtcNow.AddHours(1);
-                    var service = new FakeSingleUseTokenServiceBase(clock);
-                    service.Retrieve_Output_Expiration = expiration;
+                    var service = new FakeSingleUseTokenServiceBase(clock)
+                    {
+                        Retrieve_Output_Expiration = expiration
+                    };
 
                     await service.Create(token, expiration);
 
@@ -130,8 +132,10 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
                 {
                     var token = new SingleUseToken("token");
                     var clock = Clock();
-                    var service = new FakeSingleUseTokenServiceBase(clock);
-                    service.Retrieve_ShouldReturnData = false;
+                    var service = new FakeSingleUseTokenServiceBase(clock)
+                    {
+                        Retrieve_ShouldReturnData = false
+                    };
 
                     Assert.False(await service.Validate(token));
                 }
@@ -142,8 +146,10 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
                     var token = new SingleUseToken("token");
                     var clock = Clock();
                     var expiration = clock.UtcNow.AddHours(-1);
-                    var service = new FakeSingleUseTokenServiceBase(clock);
-                    service.Retrieve_Output_Expiration = expiration;
+                    var service = new FakeSingleUseTokenServiceBase(clock)
+                    {
+                        Retrieve_Output_Expiration = expiration
+                    };
 
                     Assert.False(await service.Validate(token));
                 }
@@ -154,8 +160,10 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
                     var token = new SingleUseToken("token");
                     var clock = Clock();
                     var expiration = clock.UtcNow.AddHours(-1);
-                    var service = new FakeSingleUseTokenServiceBase(clock);
-                    service.Retrieve_Output_Expiration = expiration;
+                    var service = new FakeSingleUseTokenServiceBase(clock)
+                    {
+                        Retrieve_Output_Expiration = expiration
+                    };
 
                     await service.Validate(token);
 

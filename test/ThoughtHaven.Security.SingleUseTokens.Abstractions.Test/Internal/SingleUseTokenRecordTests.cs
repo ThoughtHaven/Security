@@ -26,7 +26,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
                     Assert.Throws<ArgumentNullException>("token", () =>
                     {
                         new SingleUseTokenRecord(
-                            token: null,
+                            token: null!,
                             expiration: DateTimeOffset.UtcNow);
                     });
                 }

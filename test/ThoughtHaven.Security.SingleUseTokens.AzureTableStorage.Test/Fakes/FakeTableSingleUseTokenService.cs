@@ -17,7 +17,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Fakes
             this.Clock = clock;
         }
 
-        new public Task<SingleUseTokenRecord> Retrieve(SingleUseToken token) =>
+        new public Task<SingleUseTokenRecord?> Retrieve(SingleUseToken token) =>
             base.Retrieve(token);
         new public Task Create(SingleUseTokenRecord record) => base.Create(record);
         new public Task Delete(SingleUseTokenRecord record) => base.Delete(record);

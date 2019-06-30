@@ -15,11 +15,11 @@ namespace Microsoft.Extensions.DependencyInjection
                 [Fact]
                 public void NullServices_Throws()
                 {
-                    IServiceCollection services = null;
+                    IServiceCollection? services = null;
 
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
-                        services.AddSingleUseTokens(
+                        services!.AddSingleUseTokens(
                             options: Options());
                     });
                 }
@@ -29,7 +29,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     Assert.Throws<ArgumentNullException>("options", () =>
                     {
-                        Services().AddSingleUseTokens(options: null);
+                        Services().AddSingleUseTokens(options: null!);
                     });
                 }
 

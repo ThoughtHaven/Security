@@ -15,7 +15,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("record", () =>
                     {
-                        new SingleUseTokenModel(record: null);
+                        new SingleUseTokenModel(record: null!);
                     });
                 }
 

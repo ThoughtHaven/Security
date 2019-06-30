@@ -34,7 +34,7 @@ namespace ThoughtHaven.Security.SingleUseTokens
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new SingleUseToken(value: null);
+                        new SingleUseToken(value: null!);
                     });
                 }
 

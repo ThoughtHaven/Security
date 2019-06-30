@@ -26,7 +26,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        Options().TableName = null;
+                        Options().TableName = null!;
                     });
                 }
 
@@ -79,7 +79,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        Options().TableRequest = null;
+                        Options().TableRequest = null!;
                     });
                 }
 
@@ -106,7 +106,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                     Assert.Throws<ArgumentNullException>("storageAccountConnectionString", () =>
                     {
                         new TableSingleUseTokenOptions(
-                            storageAccountConnectionString: null);
+                            storageAccountConnectionString: null!);
                     });
                 }
 
@@ -143,7 +143,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
         }
 
         private static TableSingleUseTokenOptions Options(
-            string storageAccountConnectionString = null) =>
+            string? storageAccountConnectionString = null) =>
             new TableSingleUseTokenOptions(
                 storageAccountConnectionString ?? "connectionString");
     }

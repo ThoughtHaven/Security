@@ -1,20 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
     <RootNamespace>ThoughtHaven.Security.SingleUseTokens.AzureTableStorage</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.107.3</Version>
+    <Version>0.108.0</Version>
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Product>Thought Haven Security Single Use Tokens Azure Table Storage</Product>
     <Description>Azure table storage implementation of Thought Haven's single use tokens abstractions.</Description>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
+    <LangVersion>8.0</LangVersion>
+    <!--<Nullable>enable</Nullable>-->
+    <NullableContextOptions>enable</NullableContextOptions>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="1.1.1" />
-    <PackageReference Include="ThoughtHaven.Data.AzureTableStorage" Version="0.105.2" />
+    <PackageReference Include="ThoughtHaven.Data.AzureTableStorage" Version="0.106.0" />
   </ItemGroup>
 
   <ItemGroup>
