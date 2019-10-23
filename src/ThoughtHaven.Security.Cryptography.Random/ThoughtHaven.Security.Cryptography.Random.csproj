@@ -9,10 +9,9 @@
     <Product>ThoughtHaven Security Cryptography Random</Product>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
     <Description>A simple wrapper class for producing cryptographic random numbers.</Description>
-    <Version>0.102.0</Version>
+    <Version>0.103.0</Version>
     <LangVersion>8.0</LangVersion>
-    <!--<Nullable>enable</Nullable>-->
-    <NullableContextOptions>enable</NullableContextOptions>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
 </Project>

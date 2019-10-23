@@ -9,14 +9,13 @@
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Product>Thought Haven Security Single Use Tokens Abstractions</Product>
-    <Version>0.103.2</Version>
+    <Version>0.104.0</Version>
     <LangVersion>8.0</LangVersion>
-    <!--<Nullable>enable</Nullable>-->
-    <NullableContextOptions>enable</NullableContextOptions>
+    <Nullable>enable</Nullable>    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ThoughtHaven.Core" Version="0.104.2" />
+    <PackageReference Include="ThoughtHaven.Core" Version="0.105.0" />
   </ItemGroup>
 
 </Project>
