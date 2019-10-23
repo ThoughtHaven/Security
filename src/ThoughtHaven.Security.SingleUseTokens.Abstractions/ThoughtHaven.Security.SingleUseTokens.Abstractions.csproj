@@ -9,9 +9,10 @@
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Product>Thought Haven Security Single Use Tokens Abstractions</Product>
-    <Version>0.104.0</Version>
+    <Version>0.200.0</Version>
     <LangVersion>8.0</LangVersion>
-    <Nullable>enable</Nullable>    <Nullable>enable</Nullable>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8625</WarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
