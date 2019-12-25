@@ -48,7 +48,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
                     var record = new SingleUseTokenRecord(new SingleUseToken("value"),
                         expiration);
 
-                    Assert.Equal(expiration, record.Expiration);
+                    Assert.Equal(expiration.UtcTicks, record.Expiration.Ticks);
                 }
             }
 
@@ -70,7 +70,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
 
                     var record = new SingleUseTokenRecord("value", expiration);
 
-                    Assert.Equal(expiration, record.Expiration);
+                    Assert.Equal(expiration.UtcTicks, record.Expiration.Ticks);
                 }
             }
         }
@@ -84,7 +84,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
                 {
                     var clock = Clock();
                     var record = new SingleUseTokenRecord("value",
-                        expiration: clock.UtcNow.AddDays(-1));
+                        expiration: clock.UtcNow.ToOffset().AddDays(-1));
 
                     Assert.True(record.IsExpired(clock));
                 }
@@ -103,7 +103,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
                 {
                     var clock = Clock();
                     var record = new SingleUseTokenRecord("value",
-                        expiration: clock.UtcNow.AddDays(1));
+                        expiration: clock.UtcNow.ToOffset().AddDays(1));
 
                     Assert.False(record.IsExpired(clock));
                 }

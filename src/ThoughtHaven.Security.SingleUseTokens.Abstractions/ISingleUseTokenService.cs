@@ -5,7 +5,7 @@ namespace ThoughtHaven.Security.SingleUseTokens
 {
     public interface ISingleUseTokenService
     {
-        Task Create(SingleUseToken token, DateTimeOffset expiration);
+        Task Create(SingleUseToken token, UtcDateTime expiration);
         Task<bool> Validate(SingleUseToken token);
     }
 }

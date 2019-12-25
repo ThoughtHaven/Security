@@ -12,7 +12,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
             this._clock = Guard.Null(nameof(clock), clock);
         }
 
-        public virtual Task Create(SingleUseToken token, DateTimeOffset expiration)
+        public virtual Task Create(SingleUseToken token, UtcDateTime expiration)
         {
             Guard.Null(nameof(token), token);
 

@@ -4,18 +4,18 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
 {
     public class SingleUseTokenRecord : SingleUseToken
     {
-        public DateTimeOffset Expiration { get; }
+        public UtcDateTime Expiration { get; }
 
-        public SingleUseTokenRecord(SingleUseToken token, DateTimeOffset expiration)
+        public SingleUseTokenRecord(SingleUseToken token, UtcDateTime expiration)
             : this(Guard.Null(nameof(token), token).Value, expiration)
         { }
 
-        public SingleUseTokenRecord(string value, DateTimeOffset expiration) : base(value)
+        public SingleUseTokenRecord(string value, UtcDateTime expiration) : base(value)
         {
             this.Expiration = expiration;
         }
 
         public bool IsExpired(SystemClock clock) =>
-            Guard.Null(nameof(clock), clock).UtcNow >= this.Expiration;
+            Guard.Null(nameof(clock), clock).UtcNow >= (DateTimeOffset)this.Expiration;
     }
 }

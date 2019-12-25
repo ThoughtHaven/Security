@@ -9,7 +9,7 @@
     <Product>ThoughtHaven Security Cryptography Random</Product>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
     <Description>A simple wrapper class for producing cryptographic random numbers.</Description>
-    <Version>0.200.0</Version>
+    <Version>0.500.0</Version>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <WarningsAsErrors>CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8625</WarningsAsErrors>
