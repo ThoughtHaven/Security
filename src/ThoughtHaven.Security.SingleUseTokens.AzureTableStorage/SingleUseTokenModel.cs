@@ -6,6 +6,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
     public class SingleUseTokenModel
     {
         public string? Value { get; set; }
+#error Handle saving UtcDateTime to Azure Table Storage
         public UtcDateTime? Expiration { get; set; }
 
         public SingleUseTokenModel() { }
