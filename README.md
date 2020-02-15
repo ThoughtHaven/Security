@@ -1,7 +1,7 @@
 Thought Haven Security
 ===
 
-Making the secure thing easier and faster.
+Make the secure thing easier and faster.
 
 CryptoRandom numbers and strings, as well as single use token abstractions and an Azure table storage implementation.
 
