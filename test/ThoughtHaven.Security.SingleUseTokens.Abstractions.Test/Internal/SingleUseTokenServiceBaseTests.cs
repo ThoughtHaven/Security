@@ -46,7 +46,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
                     {
                         await service.Create(
                             token: null!,
-                            expiration: clock.UtcNow.ToOffset().AddHours(1));
+                            expiration: new UtcDateTime(clock.UtcNow.ToOffset().AddHours(1)));
                     });
                 }
 
@@ -60,7 +60,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
 
                     await Assert.ThrowsAsync<InvalidOperationException>(async () =>
                     {
-                        await service.Create(token, expiration);
+                        await service.Create(token, new UtcDateTime(expiration));
                     });
                 }
 
@@ -72,7 +72,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
                     var expiration = clock.UtcNow.ToOffset().AddHours(1);
                     var service = new FakeSingleUseTokenServiceBase(clock);
 
-                    await service.Create(token, expiration);
+                    await service.Create(token, new UtcDateTime(expiration));
 
                     Assert.Equal(token.Value, service.Create_InputData_Value);
                     Assert.Equal(expiration, service.Create_InputData_Expiration);
@@ -103,7 +103,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
                     var expiration = clock.UtcNow.ToOffset().AddHours(1);
                     var service = new FakeSingleUseTokenServiceBase(clock);
 
-                    await service.Create(token, expiration);
+                    await service.Create(token, new UtcDateTime(expiration));
 
                     Assert.True(await service.Validate(token));
                 }
@@ -119,7 +119,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
                         Retrieve_Output_Expiration = expiration
                     };
 
-                    await service.Create(token, expiration);
+                    await service.Create(token, new UtcDateTime(expiration));
 
                     await service.Validate(token);
 

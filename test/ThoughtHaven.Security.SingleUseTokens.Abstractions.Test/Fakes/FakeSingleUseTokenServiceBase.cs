@@ -13,7 +13,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Fakes
         protected override Task Create(SingleUseTokenRecord data)
         {
             this.Create_InputData_Value = data.Value;
-            this.Create_InputData_Expiration = data.Expiration;
+            this.Create_InputData_Expiration = data.Expiration.ToOffset();
 
             return Task.CompletedTask;
         }
@@ -23,7 +23,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Fakes
         protected override Task Delete(SingleUseTokenRecord data)
         {
             this.Delete_InputData_Value = data.Value;
-            this.Delete_InputData_Expiration = data.Expiration;
+            this.Delete_InputData_Expiration = data.Expiration.ToOffset();
 
             return Task.CompletedTask;
         }
@@ -41,7 +41,8 @@ namespace ThoughtHaven.Security.SingleUseTokens.Fakes
                 this.Retrieve_Output_Value = token.Value;
 
                 return Task.FromResult<SingleUseTokenRecord?>(
-                    new SingleUseTokenRecord(token, this.Retrieve_Output_Expiration));
+                    new SingleUseTokenRecord(token,
+                    new UtcDateTime(this.Retrieve_Output_Expiration)));
             }
 
             return Task.FromResult<SingleUseTokenRecord?>(null);

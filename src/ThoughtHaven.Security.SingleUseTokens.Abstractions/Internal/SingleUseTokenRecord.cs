@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ThoughtHaven.Security.SingleUseTokens.Internal
+﻿namespace ThoughtHaven.Security.SingleUseTokens.Internal
 {
     public class SingleUseTokenRecord : SingleUseToken
     {
@@ -16,6 +14,6 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
         }
 
         public bool IsExpired(SystemClock clock) =>
-            Guard.Null(nameof(clock), clock).UtcNow >= (DateTimeOffset)this.Expiration;
+            Guard.Null(nameof(clock), clock).UtcNow >= this.Expiration;
     }
 }

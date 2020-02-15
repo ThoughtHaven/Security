@@ -22,7 +22,8 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 [Fact]
                 public void WhenCalled_SetsValue()
                 {
-                    var record = new SingleUseTokenRecord("value", DateTimeOffset.UtcNow);
+                    var record = new SingleUseTokenRecord("value",
+                        new UtcDateTime(DateTimeOffset.UtcNow));
 
                     var model = new SingleUseTokenModel(record);
 
@@ -32,11 +33,12 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 [Fact]
                 public void WhenCalled_SetsExpiration()
                 {
-                    var record = new SingleUseTokenRecord("value", DateTimeOffset.UtcNow);
+                    var record = new SingleUseTokenRecord("value",
+                        new UtcDateTime(DateTimeOffset.UtcNow));
 
                     var model = new SingleUseTokenModel(record);
 
-                    Assert.Equal(record.Expiration, model.Expiration);
+                    Assert.Equal(record.Expiration.ToOffset(), model.Expiration);
                 }
             }
         }
@@ -49,12 +51,12 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                 public void WhenCalled_ReturnsRecord()
                 {
                     var model = new SingleUseTokenModel(new SingleUseTokenRecord(
-                        "value", DateTimeOffset.UtcNow));
+                        "value", new UtcDateTime(DateTimeOffset.UtcNow)));
 
                     var record = model.ToRecord();
 
                     Assert.Equal(model.Value, record.Value);
-                    Assert.Equal(model.Expiration, record.Expiration);
+                    Assert.Equal(model.Expiration, record.Expiration.ToOffset());
                 }
             }
         }

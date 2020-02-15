@@ -92,7 +92,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
 
                     Assert.Equal(service.Store.Retrieve_Output!.Value, result!.Value);
                     Assert.Equal(service.Store.Retrieve_Output.Expiration,
-                        result.Expiration);
+                        result.Expiration.ToOffset());
                 }
             }
         }
@@ -119,7 +119,8 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
                     await service.Create(record);
 
                     Assert.Equal(record.Value, service.Store.Create_InputModel!.Value);
-                    Assert.Equal(record.Expiration, service.Store.Create_InputModel.Expiration);
+                    Assert.Equal(record.Expiration.ToOffset(),
+                        service.Store.Create_InputModel.Expiration);
                 }
             }
         }
@@ -185,6 +186,6 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
             new FakeTableSingleUseTokenService(store ?? Store(), clock ?? Clock());
         private static SingleUseToken Token() => new SingleUseToken("value");
         private static SingleUseTokenRecord Record() =>
-            new SingleUseTokenRecord(Token(), DateTimeOffset.UtcNow);
+            new SingleUseTokenRecord(Token(), new UtcDateTime(DateTimeOffset.UtcNow));
     }
 }

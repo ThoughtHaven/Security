@@ -6,8 +6,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
     public class SingleUseTokenModel
     {
         public string? Value { get; set; }
-#error Handle saving UtcDateTime to Azure Table Storage
-        public UtcDateTime? Expiration { get; set; }
+        public DateTimeOffset? Expiration { get; set; }
 
         public SingleUseTokenModel() { }
 
@@ -17,10 +16,10 @@ namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
             Guard.Null(nameof(record), record);
 
             this.Value = record.Value;
-            this.Expiration = record.Expiration;
+            this.Expiration = record.Expiration.ToOffset();
         }
 
         public SingleUseTokenRecord ToRecord() =>
-            new SingleUseTokenRecord(this.Value!, this.Expiration!);
+            new SingleUseTokenRecord(this.Value!, new UtcDateTime(this.Expiration!.Value));
     }
 }

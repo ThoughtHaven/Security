@@ -6,6 +6,6 @@ namespace ThoughtHaven.Security.SingleUseTokens.Fakes
     {
         public override UtcDateTime UtcNow { get; }
 
-        public FakeSystemClock(DateTimeOffset utcNow) { this.UtcNow = utcNow; }
+        public FakeSystemClock(DateTimeOffset utcNow) { this.UtcNow = new UtcDateTime(utcNow); }
     }
 }
