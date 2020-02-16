@@ -9,14 +9,14 @@
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Product>Thought Haven Security Single Use Tokens Abstractions</Product>
-    <Version>0.700.0</Version>
+    <Version>0.700.1</Version>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <WarningsAsErrors>CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8625</WarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ThoughtHaven.Core" Version="0.700.0" />
+    <PackageReference Include="ThoughtHaven.Core" Version="0.700.1" />
   </ItemGroup>
 
 </Project>
