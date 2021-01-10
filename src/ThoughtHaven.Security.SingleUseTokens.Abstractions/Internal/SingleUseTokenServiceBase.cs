@@ -16,7 +16,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
         {
             Guard.Null(nameof(token), token);
 
-            var record = new SingleUseTokenRecord(token, expiration);
+            var record = new SingleUseTokenData(token, expiration);
 
             if (record.IsExpired(this._clock))
             {
@@ -42,8 +42,8 @@ namespace ThoughtHaven.Security.SingleUseTokens.Internal
             return false;
         }
 
-        protected abstract Task<SingleUseTokenRecord?> Retrieve(SingleUseToken token);
-        protected abstract Task Create(SingleUseTokenRecord record);
-        protected abstract Task Delete(SingleUseTokenRecord record);
+        protected abstract Task<SingleUseTokenData?> Retrieve(SingleUseToken token);
+        protected abstract Task Create(SingleUseTokenData record);
+        protected abstract Task Delete(SingleUseTokenData record);
     }
 }

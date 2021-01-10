@@ -10,7 +10,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Fakes
 
         public string? Create_InputData_Value;
         public DateTimeOffset Create_InputData_Expiration;
-        protected override Task Create(SingleUseTokenRecord data)
+        protected override Task Create(SingleUseTokenData data)
         {
             this.Create_InputData_Value = data.Value;
             this.Create_InputData_Expiration = data.Expiration.ToOffset();
@@ -20,7 +20,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Fakes
 
         public string? Delete_InputData_Value;
         public DateTimeOffset Delete_InputData_Expiration;
-        protected override Task Delete(SingleUseTokenRecord data)
+        protected override Task Delete(SingleUseTokenData data)
         {
             this.Delete_InputData_Value = data.Value;
             this.Delete_InputData_Expiration = data.Expiration.ToOffset();
@@ -32,7 +32,7 @@ namespace ThoughtHaven.Security.SingleUseTokens.Fakes
         public SingleUseToken? Retrieve_InputToken;
         public string? Retrieve_Output_Value;
         public DateTimeOffset Retrieve_Output_Expiration = DateTimeOffset.UtcNow;
-        protected override Task<SingleUseTokenRecord?> Retrieve(SingleUseToken token)
+        protected override Task<SingleUseTokenData?> Retrieve(SingleUseToken token)
         {
             this.Retrieve_InputToken = token;
 
@@ -40,12 +40,12 @@ namespace ThoughtHaven.Security.SingleUseTokens.Fakes
             {
                 this.Retrieve_Output_Value = token.Value;
 
-                return Task.FromResult<SingleUseTokenRecord?>(
-                    new SingleUseTokenRecord(token,
+                return Task.FromResult<SingleUseTokenData?>(
+                    new SingleUseTokenData(token,
                     new UtcDateTime(this.Retrieve_Output_Expiration)));
             }
 
-            return Task.FromResult<SingleUseTokenRecord?>(null);
+            return Task.FromResult<SingleUseTokenData?>(null);
         }
     }
 }

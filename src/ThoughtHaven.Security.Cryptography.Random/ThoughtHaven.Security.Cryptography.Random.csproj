@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>ThoughtHaven.Security.Cryptography</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Thought Haven,Brendan Ridenour</Authors>
@@ -9,8 +9,7 @@
     <Product>ThoughtHaven Security Cryptography Random</Product>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
     <Description>A simple wrapper class for producing cryptographic random numbers.</Description>
-    <Version>0.700.0</Version>
-    <LangVersion>8.0</LangVersion>
+    <Version>0.1000.0</Version>
     <Nullable>enable</Nullable>
     <WarningsAsErrors>CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8625</WarningsAsErrors>
   </PropertyGroup>

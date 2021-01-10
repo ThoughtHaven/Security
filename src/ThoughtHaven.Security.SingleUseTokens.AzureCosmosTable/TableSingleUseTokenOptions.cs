@@ -1,6 +1,6 @@
 ﻿using Microsoft.Azure.Cosmos.Table;
 
-namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
+namespace ThoughtHaven.Security.SingleUseTokens.AzureCosmosTable
 {
     public class TableSingleUseTokenOptions
     {

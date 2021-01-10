@@ -1,14 +1,15 @@
 ﻿namespace ThoughtHaven.Security.SingleUseTokens.Internal
 {
-    public class SingleUseTokenRecord : SingleUseToken
+    public class SingleUseTokenData : SingleUseToken
     {
         public UtcDateTime Expiration { get; }
 
-        public SingleUseTokenRecord(SingleUseToken token, UtcDateTime expiration)
+        public SingleUseTokenData(SingleUseToken token, UtcDateTime expiration)
             : this(Guard.Null(nameof(token), token).Value, expiration)
         { }
 
-        public SingleUseTokenRecord(string value, UtcDateTime expiration) : base(value)
+        public SingleUseTokenData(string value, UtcDateTime expiration)
+            : base(value)
         {
             this.Expiration = expiration;
         }

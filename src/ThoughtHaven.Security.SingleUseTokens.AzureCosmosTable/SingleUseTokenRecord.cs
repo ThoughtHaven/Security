@@ -1,22 +1,22 @@
 ﻿using System;
 using ThoughtHaven.Security.SingleUseTokens.Internal;
 
-namespace ThoughtHaven.Security.SingleUseTokens.AzureTableStorage
+namespace ThoughtHaven.Security.SingleUseTokens.AzureCosmosTable
 {
-    public class SingleUseTokenModel
+    public record SingleUseTokenRecord
     {
         public string? Value { get; set; }
         public DateTimeOffset? Expiration { get; set; }
 
-        public SingleUseTokenModel() { }
+        public SingleUseTokenRecord() { }
 
-        public SingleUseTokenModel(SingleUseTokenData record)
+        public SingleUseTokenRecord(SingleUseTokenData data)
             : this()
         {
-            Guard.Null(nameof(record), record);
+            Guard.Null(nameof(data), data);
 
-            this.Value = record.Value;
-            this.Expiration = record.Expiration.ToOffset();
+            this.Value = data.Value;
+            this.Expiration = data.Expiration.ToOffset();
         }
 
         public SingleUseTokenData ToData() =>

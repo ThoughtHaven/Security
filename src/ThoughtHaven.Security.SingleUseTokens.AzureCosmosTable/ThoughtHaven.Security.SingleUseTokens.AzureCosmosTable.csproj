@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>ThoughtHaven.Security.SingleUseTokens.AzureTableStorage</RootNamespace>
+    <RootNamespace>ThoughtHaven.Security.SingleUseTokens.AzureCosmosTable</RootNamespace>
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Product>Thought Haven Security Single Use Tokens Azure Table Storage</Product>

@@ -23,7 +23,7 @@ namespace ThoughtHaven.Security.Cryptography
             while (randomString.StartsWith(Zero))
             {
                 var next = this.GenerateString(1, Numbers);
-                randomString = $"{randomString.Substring(1)}{next}";
+                randomString = $"{randomString[1..]}{next}";
             }
 
             return long.Parse(randomString);
@@ -54,20 +54,18 @@ namespace ThoughtHaven.Security.Cryptography
                 throw new ArgumentException(paramName: nameof(characterSet), message: $"The {nameof(characterSet)}.{nameof(characterSet.Length)} must be at least 2.");
             }
 
-            using (var rng = RandomNumberGenerator.Create())
+            using var rng = RandomNumberGenerator.Create();
+            var bytes = new byte[length];
+
+            rng.GetBytes(bytes);
+
+            var result = new char[length];
+            while (length-- > 0)
             {
-                var bytes = new byte[length];
-
-                rng.GetBytes(bytes);
-
-                var result = new char[length];
-                while (length-- > 0)
-                {
-                    result[length] = characterSet[bytes[length] % characterSet.Length];
-                }
-
-                return new string(result);
+                result[length] = characterSet[bytes[length] % characterSet.Length];
             }
+
+            return new string(result);
         }
     }
 }
