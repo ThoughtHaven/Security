@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>ThoughtHaven.Security.SingleUseTokens.AzureCosmosTable</RootNamespace>
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
@@ -9,14 +9,14 @@
     <Description>Azure table storage implementation of Thought Haven's single use tokens abstractions.</Description>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1000.0</Version>
+    <Version>0.2000.0</Version>
     <Nullable>enable</Nullable>
     <WarningsAsErrors>CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8625</WarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-    <PackageReference Include="ThoughtHaven.Data.AzureCosmosTable" Version="0.1000.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="ThoughtHaven.Data.AzureCosmosTable" Version="0.2000.0" />
   </ItemGroup>
 
   <ItemGroup>
